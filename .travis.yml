@@ -1,0 +1,34 @@
+language: objective-c
+env:
+ - CONFIG=release QT=qt5
+branches:
+  only:
+    - master
+before_install: 
+ - brew update
+install:
+ - brew tap homebrew/dupes
+ - brew install zlib
+ - brew install qt5
+script:
+ - wget https://dl.dropboxusercontent.com/u/6105128/quazip-0.7.tar.gz
+ - tar xvzf quazip-0.7.tar.gz
+ - cd quazip-0.7
+ - /usr/local/Cellar/qt5/5.3.2/bin/qmake PREFIX=/usr/local "LIBS+=-L/usr/local/opt/zlib/lib -lz" "INCLUDEPATH+=-I/usr/local/opt/zlib/include"
+ - make
+ - sudo make install
+ - cd .. 
+ - /usr/local/Cellar/qt5/5.3.2/bin/qmake
+ - make
+ - sudo mkdir -p /usr/lib
+ - sudo cp /usr/local/lib/libquazip.* /usr/lib/
+ - /usr/local/Cellar/qt5/5.3.2/bin/macdeployqt ttyhlauncher.app
+ - zip -r9 ttyhlauncher.app.zip ttyhlauncher.app
+deploy:
+  provider: releases
+  api-key: "${CI_DEPLOY_TOKEN}"
+  file: "ttyhlauncher.app.zip"
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
