@@ -6,3 +6,5 @@ Makefile
 .qmake*
 ttyhlauncher.pro.user*
 *.zip
+.DS_Store
+
