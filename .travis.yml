@@ -14,15 +14,15 @@ script:
  - wget https://dl.dropboxusercontent.com/u/6105128/quazip-0.7.2.tar.gz
  - tar xvzf quazip-0.7.2.tar.gz
  - cd quazip-0.7.2
- - /usr/local/Cellar/qt56/5.6.0/bin/qmake PREFIX=/usr/local "LIBS+=-L/usr/local/opt/zlib/lib -lz" "INCLUDEPATH+=-I/usr/local/opt/zlib/include"
+ - /usr/local/Cellar/qt5/5.6.0/bin/qmake PREFIX=/usr/local "LIBS+=-L/usr/local/opt/zlib/lib -lz" "INCLUDEPATH+=-I/usr/local/opt/zlib/include"
  - make
  - make install
  - mv /usr/local/include/quazip /usr/local/include/quazip5
  - cd .. 
- - /usr/local/Cellar/qt56/5.6.0/bin/qmake
+ - /usr/local/Cellar/qt5/5.6.0/bin/qmake
  - make
  - cp /usr/local/lib/libquazip.* /usr/lib/
- - /usr/local/Cellar/qt56/5.6.0/bin/macdeployqt ttyhlauncher.app
+ - /usr/local/Cellar/qt5/5.6.0/bin/macdeployqt ttyhlauncher.app
  - cp /usr/local/lib/libquazip.1.dylib ttyhlauncher.app/Contents/Frameworks/
  - zip -r9 ttyhlauncher.app.zip ttyhlauncher.app
 deploy:

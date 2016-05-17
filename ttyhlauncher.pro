@@ -88,5 +88,5 @@ macx {
     LIBS += -L/usr/local/lib
     LIBS -= -lquazip5
     LIBS += -lquazip
-    QMAKE_MAC_SDK = macosx10.11
+    QMAKE_MAC_SDK = macosx10.9
 }
