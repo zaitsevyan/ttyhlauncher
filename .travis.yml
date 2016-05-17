@@ -21,8 +21,9 @@ script:
  - cd .. 
  - /usr/local/Cellar/qt5/5.6.0/bin/qmake
  - make
+ - sudo mkdir -p /usr/lib
+ - sudo cp /usr/local/lib/libquazip.* /usr/lib/
  - /usr/local/Cellar/qt5/5.6.0/bin/macdeployqt ttyhlauncher.app
- - cp /usr/local/lib/libquazip.1.dylib ttyhlauncher.app/Contents/Frameworks/
  - zip -r9 ttyhlauncher.app.zip ttyhlauncher.app
 deploy:
   provider: releases
