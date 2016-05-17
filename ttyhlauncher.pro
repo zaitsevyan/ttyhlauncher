@@ -86,5 +86,7 @@ unix {
 macx {
     INCLUDEPATH += /usr/local/include
     LIBS += -L/usr/local/lib
-    QMAKE_MAC_SDK = macosx10.9
+    LIBS -= -lquazip5
+    LIBS += -lquazip
+    QMAKE_MAC_SDK = macosx10.11
 }
