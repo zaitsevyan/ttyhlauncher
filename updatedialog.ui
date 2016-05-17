@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>694</width>
-    <height>483</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Обновление клиента</string>
+   <string>Update manager</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
@@ -41,7 +41,7 @@
      <item>
       <widget class="QLabel" name="clientLabel">
        <property name="text">
-        <string>Обновляемый игровой клиент</string>
+        <string>Client for update</string>
        </property>
       </widget>
      </item>
@@ -52,100 +52,8 @@
    </item>
    <item>
     <widget class="QPlainTextEdit" name="log">
-     <property name="palette">
-      <palette>
-       <active>
-        <colorrole role="Text">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>255</red>
-           <green>255</green>
-           <blue>255</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Base">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>0</red>
-           <green>0</green>
-           <blue>0</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Highlight">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>73</red>
-           <green>73</green>
-           <blue>73</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </active>
-       <inactive>
-        <colorrole role="Text">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>255</red>
-           <green>255</green>
-           <blue>255</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Base">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>0</red>
-           <green>0</green>
-           <blue>0</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Highlight">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>73</red>
-           <green>73</green>
-           <blue>73</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </inactive>
-       <disabled>
-        <colorrole role="Text">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>255</red>
-           <green>253</green>
-           <blue>253</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Base">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>232</red>
-           <green>231</green>
-           <blue>230</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Highlight">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>155</red>
-           <green>154</green>
-           <blue>153</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </disabled>
-      </palette>
-     </property>
      <property name="font">
       <font>
-       <family>Liberation Mono</family>
        <weight>75</weight>
        <bold>true</bold>
       </font>
@@ -163,7 +71,21 @@
     </widget>
    </item>
    <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="bottomLayout">
+     <item>
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <spacer name="hspc">
        <property name="orientation">
@@ -180,7 +102,7 @@
      <item>
       <widget class="QPushButton" name="updateButton">
        <property name="text">
-        <string>Обновить</string>
+        <string>Update</string>
        </property>
       </widget>
      </item>
@@ -189,9 +111,10 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>updateButton</tabstop>
   <tabstop>clientCombo</tabstop>
   <tabstop>log</tabstop>
-  <tabstop>updateButton</tabstop>
+  <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
   <include location="resources.qrc"/>

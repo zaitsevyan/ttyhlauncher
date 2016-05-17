@@ -2,14 +2,13 @@
 #define SETTINGS_H
 
 #include <QtCore>
-
-#include "logger.h"
+#include <QNetworkAccessManager>
 
 class Settings : public QObject
 {
     Q_OBJECT
 public:
-    static Settings* instance();
+    static Settings *instance();
 
     static const QString authUrl;
     static const QString changePasswrdUrl;
@@ -18,113 +17,123 @@ public:
 
     static const QString launcherVersion;
 
+    static const QString newsFeed;
 
 private:
-    static Settings* myInstance;
+    static const QString master;
+    static Settings *myInstance;
 
 private:
     Settings();
-    QSettings* settings;
+    QSettings *settings;
 
-    QStringList clientStrIDs;
-    QStringList clientNames;
-    void appendClient(QString strid, QString name);
+    QNetworkAccessManager *nam;
+
+    QHash<QString, QString> clients; // str_id, title
 
     QString dataPath;
     QString configPath;
     QString updateServer;
 
+    void log(const QString &text);
+
 public:
     // Update URLs
-    QString getVersionsUrl();
-    QString getVersionUrl(QString version);
-    QString getLibsUrl();
-    QString getAssetsUrl();
+    QString getVersionsUrl() const;
+    QString getVersionUrl(const QString &version);
+    QString getLibsUrl() const;
+    QString getAssetsUrl() const;
+
+    void updateLocalData();
 
     // Clients
-    void loadClientList();
+    QStringList getClientCaptions() const;
+    int getClientID(const QString &strid) const;
+    QString getClientName(int index) const;
+    QString getClientCaption(int index) const;
 
-    // Keystore
-    void loadCustomKeystore();
-
-    QStringList getClientsNames();
-    int getClientId(QString name);
-    int strIDtoID(QString strid);
-    QString getClientStrId(int id);
-    QString getClientName(int id);
+    QStringList getClientNames() const;
 
     // Directories
-    QString getBaseDir();
-    QString getClientDir();
-    QString getClientPrefix(QString version);
-    QString getAssetsDir();
-    QString getLibsDir();
-    QString getVersionsDir();
-    QString getNativesDir();
-    QString getConfigDir();
+    QString getBaseDir() const;
+    QString getClientDir() const;
+    QString getClientPrefix(const QString &version) const;
+    QString getAssetsDir() const;
+    QString getLibsDir() const;
+    QString getVersionsDir() const;
+    QString getNativesDir() const;
+    QString getConfigDir() const;
 
-    // Mainwindow login form
-    QString loadLogin();
-    bool loadPassStore();
-    QString loadPassword();
-    void savePassword(QString password);
-    int loadActiveClientId();
+    // Launcher settings
+    int loadActiveClientID() const;
+    QString loadLogin() const;
+    bool loadPassStoreState() const;
+    bool loadMaximizedState() const;
 
-    // Window parameters
-    QRect loadWindowGeometry();
-    void saveWindowGeometry(QRect geom);
-    bool loadMaximizedState();
+    QString loadPassword() const;
+    void savePassword(const QString &password) const;
 
-    QRect loadClientWindowGeometry();
-    void saveClientWindowGeometry(QRect g);
-    bool loadClientSizeState();
-    void saveClientSizeState(bool s);
+    QRect loadWindowGeometry() const;
+    void saveWindowGeometry(const QRect &geom) const;
 
-    // Offline mode
-    void saveOfflineModeState(bool offlineState);
-    bool loadOfflineModeState();
+    bool loadOfflineModeState() const;
+    void saveOfflineModeState(bool offlineState) const;
+
+    bool loadHideWindowModeState() const;
+    void saveHideWindowModeState(bool hideState) const;
+
+    bool loadNewsState() const;
+    void saveNewsState(bool state) const;
 
     // Client settings
-    QString loadClientVersion();
-    void saveClientVersion(QString strid);
+    QString loadClientVersion() const;
+    void saveClientVersion(const QString &version) const;
 
-    bool loadClientJavaState();
-    void saveClientJavaState(bool state);
+    bool loadClientJavaState() const;
+    void saveClientJavaState(bool state) const;
 
-    QString loadClientJava();
-    void saveClientJava(QString java);
+    QString loadClientJava() const;
+    void saveClientJava(const QString &java) const;
 
-    bool loadClientJavaArgsState();
-    void saveClientJavaArgsState(bool state);
+    bool loadClientJavaArgsState() const;
+    void saveClientJavaArgsState(bool state) const;
 
-    QString loadClientJavaArgs();
-    void saveClientJavaArgs(QString args);
+    QString loadClientJavaArgs() const;
+    void saveClientJavaArgs(const QString &args) const;
 
-    bool loadClientFullscreenState();
-    void saveClientFullscreenState(bool state);
+    bool loadClientWindowSizeState() const;
+    void saveClientWindowSizeState(bool s) const;
 
-    bool loadUseLauncherSizeState();
-    void saveUseLauncherSizeState(bool state);
+    QRect loadClientWindowGeometry() const;
+    void saveClientWindowGeometry(const QRect &g) const;
+
+    bool loadClientFullscreenState() const;
+    void saveClientFullscreenState(bool state) const;
+
+    bool loadClientUseLauncherSizeState() const;
+    void saveClientUseLauncherSizeState(bool state) const;
+
+    bool loadClientCheckAssetsState() const;
+    void saveClientCheckAssetsState(bool state) const;
 
     // Custom
-    QString makeMinecraftUuid();
+    QString makeMinecraftUuid() const;
 
-    QString getOsName();
-    QString getOsVersion();
-    QString getWordSize();
+    QString getOsName() const;
+    QString getOsVersion() const;
+    QString getWordSize() const;
+
+    QNetworkAccessManager *getNetworkAccessManager() const;
 
 public slots:
-    void saveActiveClientId(int id);
-    void saveLogin(QString login);
-    void savePassStore(bool state);
-    void saveMaximizedState(bool state);
-
+    void saveActiveClientID(int id) const;
+    void saveLogin(const QString &login) const;
+    void savePassStoreState(bool state) const;
+    void saveMaximizedState(bool state) const;
 
 private:
-    Settings& operator=(Settings const&);
-    Settings(Settings const&);
-
+    Settings &operator=(Settings const &);
+    Settings(Settings const &);
 };
-
 
 #endif // SETTINGS_H

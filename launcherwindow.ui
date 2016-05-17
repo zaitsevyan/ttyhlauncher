@@ -6,149 +6,182 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>898</width>
-    <height>550</height>
+    <width>780</width>
+    <height>470</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
-   <string>Пусковая установка</string>
+   <string>Ttyh Launcher</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
     <normaloff>:/resources/favicon.png</normaloff>:/resources/favicon.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_3">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
-     <number>0</number>
+     <number>4</number>
     </property>
     <property name="leftMargin">
-     <number>4</number>
+     <number>5</number>
     </property>
     <property name="topMargin">
-     <number>4</number>
+     <number>5</number>
     </property>
     <property name="rightMargin">
-     <number>4</number>
+     <number>5</number>
     </property>
     <property name="bottomMargin">
-     <number>4</number>
+     <number>5</number>
     </property>
     <item>
-     <layout class="QVBoxLayout" name="mainLayout">
+     <widget class="LogView" name="logDisplay">
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="undoRedoEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="plainText">
+       <string notr="true"/>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QWebView" name="webView">
-        <property name="url">
-         <url>
-          <string>file:///home/raptor/Разработка/qt/ttyhlauncher/resources/loading.html</string>
-         </url>
+       <widget class="QLabel" name="logo">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="resources.qrc">:/resources/logo.png</pixmap>
         </property>
        </widget>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="panelLayout">
-        <item>
-         <widget class="QLabel" name="logo">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap resource="resources.qrc">:/resources/logo.png</pixmap>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="logoSpc">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <layout class="QGridLayout" name="loginForm">
-          <property name="verticalSpacing">
-           <number>4</number>
-          </property>
-          <item row="2" column="0">
-           <widget class="QLabel" name="clienttypeLabel">
-            <property name="text">
-             <string>Тип клиента</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1" colspan="2">
-           <widget class="QLineEdit" name="passEdit">
-            <property name="echoMode">
-             <enum>QLineEdit::Password</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="nickLabel">
-            <property name="text">
-             <string>Игровое имя</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="passLabel">
-            <property name="text">
-             <string>Пароль</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1" colspan="2">
-           <widget class="QComboBox" name="clientCombo"/>
-          </item>
-          <item row="3" column="2">
-           <layout class="QHBoxLayout" name="playbuttonLayout">
-            <item>
-             <spacer name="btnSpc">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="playButton">
-              <property name="text">
-               <string>Играть!</string>
-              </property>
-              <property name="autoDefault">
-               <bool>true</bool>
-              </property>
-              <property name="default">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="3" column="0" colspan="2">
-           <widget class="QCheckBox" name="savePassword">
-            <property name="text">
-             <string>Запомнить пароль</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" colspan="2">
-           <widget class="QLineEdit" name="nickEdit"/>
-          </item>
-         </layout>
-        </item>
-       </layout>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QWidget" name="runPanel" native="true">
+        <layout class="QGridLayout" name="gridLayout">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <property name="spacing">
+          <number>4</number>
+         </property>
+         <item row="3" column="0" colspan="2">
+          <widget class="QCheckBox" name="savePassword">
+           <property name="text">
+            <string>Remember password</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="nickLabel">
+           <property name="text">
+            <string>Player Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="passLabel">
+           <property name="text">
+            <string>Password</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="clienttypeLabel">
+           <property name="text">
+            <string>Clinet</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1" colspan="2">
+          <widget class="QComboBox" name="clientCombo"/>
+         </item>
+         <item row="1" column="1" colspan="2">
+          <widget class="QLineEdit" name="passEdit">
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" colspan="2">
+          <widget class="QLineEdit" name="nickEdit"/>
+         </item>
+         <item row="3" column="2">
+          <layout class="QHBoxLayout" name="playbuttonLayout">
+           <item>
+            <spacer name="btnSpc">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="playButton">
+             <property name="text">
+              <string>Play!</string>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
       </item>
      </layout>
     </item>
@@ -159,80 +192,43 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>898</width>
-     <height>18</height>
+     <width>780</width>
+     <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="newsMenu">
-    <property name="title">
-     <string>Новости</string>
-    </property>
-    <addaction name="ttyhNews"/>
-    <addaction name="officialNews"/>
-   </widget>
    <widget class="QMenu" name="optionsMenu">
     <property name="title">
-     <string>Опции</string>
+     <string>&amp;Options</string>
     </property>
     <addaction name="playOffline"/>
-    <addaction name="runSettings"/>
+    <addaction name="hideLauncher"/>
+    <addaction name="loadNews"/>
    </widget>
    <widget class="QMenu" name="addMenu">
     <property name="title">
-     <string>Дополнительно</string>
+     <string>&amp;Tools</string>
     </property>
+    <addaction name="runSettings"/>
     <addaction name="changeSkin"/>
     <addaction name="updateManager"/>
    </widget>
    <widget class="QMenu" name="helpMenu">
     <property name="title">
-     <string>Помощь</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="bugReport"/>
     <addaction name="aboutLauncher"/>
    </widget>
-   <widget class="QMenu" name="builderMenu">
-    <property name="title">
-     <string>Инструменты сборщика</string>
-    </property>
-    <addaction name="doClone"/>
-    <addaction name="doFetch"/>
-    <addaction name="doCheckout"/>
-    <addaction name="doExport"/>
-   </widget>
-   <addaction name="newsMenu"/>
    <addaction name="optionsMenu"/>
    <addaction name="addMenu"/>
    <addaction name="helpMenu"/>
-   <addaction name="builderMenu"/>
   </widget>
-  <action name="ttyhNews">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Новости ттюха</string>
-   </property>
-  </action>
-  <action name="officialNews">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Новости Minecraft</string>
-   </property>
-  </action>
   <action name="playOffline">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Играть оффлайн</string>
-   </property>
-  </action>
-  <action name="action_3">
-   <property name="text">
-    <string>Показывать все клиенты</string>
+    <string>&amp;Play offline</string>
    </property>
   </action>
   <action name="runSettings">
@@ -241,7 +237,7 @@
      <normaloff>:/resources/configure.png</normaloff>:/resources/configure.png</iconset>
    </property>
    <property name="text">
-    <string>Параметры запуска</string>
+    <string>&amp;Client settings</string>
    </property>
   </action>
   <action name="bugReport">
@@ -250,16 +246,7 @@
      <normaloff>:/resources/reporting.png</normaloff>:/resources/reporting.png</iconset>
    </property>
    <property name="text">
-    <string>Сообщить об ошибке</string>
-   </property>
-  </action>
-  <action name="changePassword">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/resources/password.png</normaloff>:/resources/password.png</iconset>
-   </property>
-   <property name="text">
-    <string>Изменить пароль</string>
+    <string>&amp;Report a bug</string>
    </property>
   </action>
   <action name="changeSkin">
@@ -268,7 +255,7 @@
      <normaloff>:/resources/skin.png</normaloff>:/resources/skin.png</iconset>
    </property>
    <property name="text">
-    <string>Загрузить скин</string>
+    <string>&amp;Upload skin</string>
    </property>
   </action>
   <action name="updateManager">
@@ -277,17 +264,7 @@
      <normaloff>:/resources/minecraft.png</normaloff>:/resources/minecraft.png</iconset>
    </property>
    <property name="text">
-    <string>Обновление клиента</string>
-   </property>
-  </action>
-  <action name="action_10">
-   <property name="text">
-    <string>Клиента</string>
-   </property>
-  </action>
-  <action name="action_11">
-   <property name="text">
-    <string>Лаунчера</string>
+    <string>Update &amp;manager</string>
    </property>
   </action>
   <action name="aboutLauncher">
@@ -296,44 +273,41 @@
      <normaloff>:/resources/about.png</normaloff>:/resources/about.png</iconset>
    </property>
    <property name="text">
-    <string>О программе</string>
+    <string>&amp;About</string>
    </property>
   </action>
-  <action name="doClone">
+  <action name="hideLauncher">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>Клонирование</string>
+    <string>&amp;Hide launcher window</string>
    </property>
   </action>
-  <action name="doFetch">
-   <property name="text">
-    <string>Полная загрузка</string>
+  <action name="loadNews">
+   <property name="checkable">
+    <bool>true</bool>
    </property>
-  </action>
-  <action name="doCheckout">
    <property name="text">
-    <string>Контрольные суммы</string>
-   </property>
-  </action>
-  <action name="doExport">
-   <property name="text">
-    <string>Экспорт</string>
+    <string>&amp;Load news</string>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QWebView</class>
-   <extends>QWidget</extends>
-   <header>QtWebKitWidgets/QWebView</header>
+   <class>LogView</class>
+   <extends>QPlainTextEdit</extends>
+   <header location="global">logview.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>playButton</tabstop>
   <tabstop>nickEdit</tabstop>
   <tabstop>passEdit</tabstop>
   <tabstop>clientCombo</tabstop>
-  <tabstop>playButton</tabstop>
-  <tabstop>webView</tabstop>
+  <tabstop>savePassword</tabstop>
+  <tabstop>logDisplay</tabstop>
  </tabstops>
  <resources>
   <include location="resources.qrc"/>

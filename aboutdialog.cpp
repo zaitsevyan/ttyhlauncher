@@ -2,25 +2,30 @@
 #include "ui_aboutdialog.h"
 
 #include "settings.h"
-#include "logger.h"
+#include "licensedialog.h"
 
 AboutDialog::AboutDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
+    ui->ttyhlauncherLabel->setText("ttyhlauncher " + Settings::launcherVersion);
 
-    ui->info->setPlainText("ttyhlauncher " + Settings::launcherVersion + "\n\n" +
-                           "Это ПО с открытым исходным кодом, распространяемое под лицензией " +
-                           "GNU General Public License, версия 3.\n\n" +
-                           "https://github.com/figec/ttyhlauncher");
-    connect(ui->okButton, SIGNAL(clicked()), this, SLOT(close()));
+    ui->linkLabel->setOpenExternalLinks(true);
 
-    Logger::logger()->append("AboutDialog", "About dialog opened\n");
+    connect(ui->closeButton, &QPushButton::clicked, this, &AboutDialog::close);
+    connect(ui->licenseButton, &QPushButton::clicked, this,
+            &AboutDialog::showLicense);
+}
+
+void AboutDialog::showLicense()
+{
+    LicenseDialog *d = new LicenseDialog(this);
+    d->exec();
+    delete d;
 }
 
 AboutDialog::~AboutDialog()
 {
-    Logger::logger()->append("AboutDialog", "About dialog closed\n");
     delete ui;
 }
