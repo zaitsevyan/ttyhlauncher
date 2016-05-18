@@ -5,27 +5,16 @@ HashChecker::HashChecker()
     qRegisterMetaType<QList<FileInfo> >("QList<FileInfo>");
 }
 
-void HashChecker::setCancelled(bool state)
+void HashChecker::checkFiles(const QList<FileInfo> &list, bool stopOnBad)
 {
-    QMutexLocker locker(&mutex);
-    cancelled = state;
-}
-
-bool HashChecker::isCancelled() const
-{
-    return cancelled;
-}
-
-void HashChecker::checkFiles(const QList<FileInfo> &list)
-{
-    setCancelled(false);
+    cancelled = false;
 
     int total = list.count();
     int current = 0;
 
     foreach (const FileInfo entry, list)
     {
-        if ( isCancelled() )
+        if (cancelled)
         {
             return;
         }
@@ -36,6 +25,11 @@ void HashChecker::checkFiles(const QList<FileInfo> &list)
         if ( !hashIsValid(entry) )
         {
             emit verificationFailed(entry);
+
+            if (stopOnBad)
+            {
+                return;
+            }
         }
     }
 
@@ -44,7 +38,7 @@ void HashChecker::checkFiles(const QList<FileInfo> &list)
 
 void HashChecker::cancel()
 {
-    setCancelled(true);
+    cancelled = true;
 }
 
 bool HashChecker::hashIsValid(const FileInfo fileInfo) const
@@ -53,25 +47,30 @@ bool HashChecker::hashIsValid(const FileInfo fileInfo) const
     {
         return false;
     }
-    else if (!fileInfo.isMutable)
+
+    if (!fileInfo.isMutable)
     {
+        QCryptographicHash hash(QCryptographicHash::Sha1);
+
         QFile file(fileInfo.name);
         if ( !file.open(QIODevice::ReadOnly) )
         {
             return false;
         }
-        else
+
+        bool readed = hash.addData(&file);
+        file.close();
+
+        if (!readed)
         {
-            QByteArray data = file.readAll();
-            file.close();
+            return false;
+        }
 
-            QCryptographicHash::Algorithm alg = QCryptographicHash::Sha1;
-            QByteArray sha = QCryptographicHash::hash(data, alg).toHex();
+        QString sha = QString( hash.result().toHex() );
 
-            if ( fileInfo.hash != QString(sha) )
-            {
-                return false;
-            }
+        if (fileInfo.hash != sha)
+        {
+            return false;
         }
     }
 

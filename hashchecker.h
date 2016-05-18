@@ -14,16 +14,12 @@ public:
     void cancel();
 
 public slots:
-    void checkFiles(const QList< FileInfo > &list);
+    void checkFiles(const QList< FileInfo > &list, bool stopOnBad);
 
 private:
     bool hashIsValid(const FileInfo fileInfo) const;
 
     bool cancelled;
-    mutable QMutex mutex;
-
-    void setCancelled(bool state);
-    bool isCancelled() const;
 
 signals:
     void progress( int percents );
